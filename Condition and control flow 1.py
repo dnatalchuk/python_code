@@ -4,8 +4,6 @@
 # input() in Py2 -> returns int value
 # input() in Py3 -> return string
 
-"""
-
 def teeth():
 	print "Which hand to use to clean my teeth? "
 	print "Right or Left?"
@@ -23,5 +21,4 @@ def teeth():
 		
 teeth()
 
-"""
 
