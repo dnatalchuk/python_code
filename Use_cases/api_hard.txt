@@ -1,0 +1,16 @@
+{
+    "movies": [
+      {
+        "type": "Thriller",
+        "title": "Black Mass"
+      },
+      {
+        "type": "Fantasy",
+        "title": "Hobbit"
+      },
+      {
+        "type": "Comedy",
+        "title": "Django"
+      }
+    ]
+}
