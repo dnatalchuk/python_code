@@ -3,19 +3,10 @@
 # Conditionals and Control Flow lecture
 
 """
+In most cases condition "if", "in", "is" is used and boolean values "True" & "False".
 
-print 1 == 1
-
-print 50 != (50+1)
-
-bool_answer = 1 == 1
-print bool_answer
-
-"""
-
-# if, elif - are related to True value;
-# else - related to False
-
+if, elif - are related to True value.
+else - related to False.
 """
 
 temp = 11
