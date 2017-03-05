@@ -64,7 +64,7 @@ def max(x, y):
 max(x, y) """
 
 #6.3
-def func():
+"""def func():
     x = 2
     print("x equals", x)
 
@@ -75,4 +75,25 @@ def func():
     func_nested()
     print("x changed to", x)
 
-func()
+func()"""
+
+#6.4
+"""
+def f(val, pr = 100):
+    print("Value in percentage", val/pr)
+f(51) """
+
+#6.5
+"""
+def var(initial = 5, *numbers, **keywords):
+    count = initial
+    for number in numbers:
+        count += number
+
+    for key in keywords:
+        count += keywords[key]
+        return count
+print(var(1, 2, 10, 4, etables=20, fruits=10)) """
+
+
+
