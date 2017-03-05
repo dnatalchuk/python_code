@@ -11,17 +11,68 @@
 #length = 4; wideth = 5; print("Area equals {0} \nPerimetre equals {1}". format(length*wideth, 2*(length+wideth)))
 
 #4
-"""number = 10;
-guess = int(input("Enter your digit:"))
+"""
+number = 10;
+running = True
 
-if number == guess:
-    print("Hej hej!! You are correct \nBut no prise this time!")
+while running:
+    guess = int(input("Enter your digit:"))
 
-elif number < guess:
-    print("Needed digit is less than entered")
+    if number == guess:
+        print("Hej hej!! You are correct \nBut no prise this time!")
+        running = False
 
-else:print("Needed digit is higher than entered")
+    elif number < guess:
+        print("Needed digit is less than entered")
 
-print("Done")"""
+    else:print("Needed digit is higher than entered")
 
+else:print("While has finished")
 
+print("Done")
+"""
+
+#5
+#for i in range(10, 20, 2): print(i)
+
+#6 - functions
+#6.1
+"""x = 50
+def sayhel():
+    global x
+    print("x =", x)
+    x = 10
+    print("x new =", x)
+sayhel()
+print("Outside x =", x) """
+
+#6.2
+"""
+x = 10
+y = 2
+
+def max(x, y):
+    #global x
+    x = 2
+    y = 5
+
+    if x > y:
+        print("X is max")
+    elif x < y:
+        print("Y is max")
+    else: print("They're equal!")
+max(x, y) """
+
+#6.3
+def func():
+    x = 2
+    print("x equals", x)
+
+    def func_nested():
+        nonlocal x
+        x = 5
+
+    func_nested()
+    print("x changed to", x)
+
+func()
