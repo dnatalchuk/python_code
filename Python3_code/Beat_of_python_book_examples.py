@@ -95,5 +95,13 @@ def var(initial = 5, *numbers, **keywords):
         return count
 print(var(1, 2, 10, 4, etables=20, fruits=10)) """
 
+#7
+#name = 'Swaroop'
+#if name.startswith('Swa'):
+#    print("Yes, it starts with Swa")
+a = "this is string"
+#b = a.split(" ")
+#print(b)
+#print("-".join(b))
 
-
+print("-".join(a))
