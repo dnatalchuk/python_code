@@ -99,9 +99,10 @@ print(var(1, 2, 10, 4, etables=20, fruits=10)) """
 #name = 'Swaroop'
 #if name.startswith('Swa'):
 #    print("Yes, it starts with Swa")
-a = "this is string"
-#b = a.split(" ")
+set_a = ('val1', 'val2')
+set_b = ('key1', 'key2')
+#b = a.split(" ")=
 #print(b)
 #print("-".join(b))
 
-print("-".join(a))
+
