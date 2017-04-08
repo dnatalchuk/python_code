@@ -4,8 +4,15 @@ File should be formated according to table structure and perform uploading:
 """
 
 import sys
-import mysql
+import csv
+import pymysql
 
-def func():
-    pass
+#declaring variables
+db_host = 'manager.de'
+db_user = 'supp'
+db_pass = 'aaa'
+db_tables = 'google table'
 
+#chapter for formatting data
+
+csv_data = csv.reader(sys.argv[1])
