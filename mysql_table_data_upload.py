@@ -16,3 +16,6 @@ db_tables = 'google table'
 #chapter for formatting data
 
 csv_data = csv.reader(sys.argv[1])
+
+
+
