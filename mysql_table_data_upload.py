@@ -15,8 +15,8 @@ db_pass = 'aaa'
 db_tables = 'google_date'
 
 cursor = db_name.cursor()
-#chapter for formatting data
 
+#chapter for formatting data
 csv_data = csv.reader(sys.argv[1])
 
 def __init__(self):
