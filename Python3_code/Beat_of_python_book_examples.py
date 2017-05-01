@@ -151,3 +151,4 @@ del droid2
 
 Robot.howmany()
 
+#test
