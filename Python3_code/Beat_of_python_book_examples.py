@@ -105,4 +105,50 @@ set_b = ('key1', 'key2')
 #print(b)
 #print("-".join(b))
 
+# Class Robot
+
+class Robot:
+    population=0
+
+    def __init__(self, name):
+        self.name = name
+        print('(Initialize {0})'.format(self.name))
+
+        Robot.population += 1
+
+    def __del__(self):
+        """Dead"""
+        print('{0} destroyed!'.format(self.name))
+
+        Robot.population -= 1
+
+        if Robot.population == 0:
+            print('{0} was the last one'.format(self.name))
+        else:
+            print('Left {0:d} working robots'.format(Robot.population))
+
+    def sayHi(self):
+        print('Hi!my name is {0}'.format(self.name))
+
+    def howmany():
+        print('We have {0:d} robots'.format(Robot.population))
+
+    howmany=staticmethod(howmany)
+
+droid1 = Robot('R2 - D2')
+droid1.sayHi()
+Robot.howmany()
+
+droid2 = Robot('C-3PO')
+droid2.sayHi()
+Robot.howmany()
+
+print("Here they can do some magic")
+print("They finished work")
+
+del droid1
+del droid2
+
+Robot.howmany()
+
 
