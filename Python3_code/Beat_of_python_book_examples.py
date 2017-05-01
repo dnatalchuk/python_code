@@ -151,7 +151,8 @@ del droid2
 
 Robot.howmany()
 """
-
+# OOP chapter
+"""
 class SchoolMember:
     def __init__(self, name, age):
         self.name = name
@@ -191,4 +192,19 @@ print()
 members = [t, s]
 for member in members:
     member.tell()
+"""
 
+# Working with Input and Output
+"""
+def reverse(text):
+    return text[::-1]
+
+def is_palindrome(text):
+    return  text == reverse(text)
+
+something = input('Enter data:')
+if (is_palindrome(something)):
+    print("This is palindrom")
+else:
+    print("It is not")
+"""
