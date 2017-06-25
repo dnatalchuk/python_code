@@ -208,8 +208,8 @@ if (is_palindrome(something)):
 else:
     print("It is not")
 """
-
-import pickle
+# Writing/reading data from file
+"""import pickle
 
 shoplistfile = 'shoplist.data'
 shoplist = ['apples','mango','bannana']
@@ -223,4 +223,15 @@ del shoplist
 f = open(shoplistfile,'rb')
 storedlist = pickle.load(f)
 
-print(storedlist)
+print(storedlist)"""
+
+# Try-except construction
+
+try:
+    text = input("Put some data -->")
+except EOFError:
+    print("Why EOF has been done? ")
+except KeyboardInterrupt:
+    print("Operation has been canceled")
+else:
+    print('Entered {0}'.format(text))
