@@ -226,12 +226,3 @@ storedlist = pickle.load(f)
 print(storedlist)"""
 
 # Try-except construction
-
-try:
-    text = input("Put some data -->")
-except EOFError:
-    print("Why EOF has been done? ")
-except KeyboardInterrupt:
-    print("Operation has been canceled")
-else:
-    print('Entered {0}'.format(text))
