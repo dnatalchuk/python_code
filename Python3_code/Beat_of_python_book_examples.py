@@ -106,7 +106,7 @@ set_b = ('key1', 'key2')
 #print("-".join(b))
 
 # Class Robot
-
+"""
 class Robot:
     population=0
 
@@ -117,7 +117,7 @@ class Robot:
         Robot.population += 1
 
     def __del__(self):
-        """Dead"""
+#        Dead
         print('{0} destroyed!'.format(self.name))
 
         Robot.population -= 1
@@ -150,5 +150,79 @@ del droid1
 del droid2
 
 Robot.howmany()
+"""
+# OOP chapter
+"""
+class SchoolMember:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        print('(Created SchoolMember: {0})'.format(self.name))
 
-#test
+    def tell(self):
+
+        print('Name: "{0}" Age:"{1}"'.format(self.name, self.age), end=" ")
+
+class Teacher(SchoolMember):
+    def __init__(self, name, age, salary):
+        SchoolMember.__init__(self,name,age)
+        self.salary = salary
+        print('(Created teacher: {0})'.format(self.name))
+
+    def tell(self):
+        SchoolMember.tell(self)
+        print('Salary: "{0:d}"'.format(self.salary))
+
+class Student(SchoolMember):
+    def __init__(self, name, age, marks):
+        SchoolMember.__init__(self,name,age)
+
+        self.marks = marks
+        print('(Student created: {0})'.format(self.name))
+
+    def tell(self):
+        SchoolMember.tell(self)
+        print('Marks are next:"{0:d}"'.format(self.marks))
+
+t = Teacher('Mrs.Shrividya', 40, 30000)
+s = Student('Swaroop', 25, 75)
+
+print()
+
+members = [t, s]
+for member in members:
+    member.tell()
+"""
+
+# Working with Input and Output
+"""
+def reverse(text):
+    return text[::-1]
+
+def is_palindrome(text):
+    return  text == reverse(text)
+
+something = input('Enter data:')
+if (is_palindrome(something)):
+    print("This is palindrom")
+else:
+    print("It is not")
+"""
+# Writing/reading data from file
+"""import pickle
+
+shoplistfile = 'shoplist.data'
+shoplist = ['apples','mango','bannana']
+
+f = open(shoplistfile,'wb')
+pickle.dump(shoplist, f)
+f.close()
+
+del shoplist
+
+f = open(shoplistfile,'rb')
+storedlist = pickle.load(f)
+
+print(storedlist)"""
+
+# Try-except construction
