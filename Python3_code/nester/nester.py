@@ -1,6 +1,6 @@
 """Module for displaying items in nested lists"""
 
-def print_nested_lists(the_list, level):
+def print_nested_lists(the_list, level=0):
     """Module for displaying items in nested lists"""
 
     for each_item in the_list:
