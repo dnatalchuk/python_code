@@ -1,12 +1,17 @@
 #!/usr/bin/python3
 
-data = open('sketch.txt')
+try:
+    data = open('sketch.txt')
 
-def print_file(the_file):
-        for each_line in data:
-            (role, line_spoken) = each_line.split(":", 1)
-            print(role, end='')
-            print(' said:', end='')
-            print(line_spoken, end='')
-print_file(data)
-data.close()
+    for each_line in data:
+        if not each_line.find(":") == -1:
+            try:
+                (role, line_spoken) = each_line.split(":", 1)
+                print(role, end='')
+                print(' said:', end='')
+                print(line_spoken, end='')
+            except ValueError:
+                pass
+    data.close()
+except IOError:
+    print('File is missing')
