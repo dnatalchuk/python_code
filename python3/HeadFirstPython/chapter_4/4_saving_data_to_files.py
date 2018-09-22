@@ -26,9 +26,12 @@ try:
 except IOError:
     print('File is missing')
 
-data.close();
-man.close();
-other.close();
+try:
+    data.close();
+    man.close();
+    other.close();
+except:
+    print("Data is corrupted")
 
 print('List for role man is here:', '\n', "./man.txt");
 print('\n','List for other role is here:', '\n', "./other.txt");
