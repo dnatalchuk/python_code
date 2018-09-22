@@ -31,8 +31,4 @@ man.close();
 other.close();
 
 print('List for role man is here:', '\n', "./man.txt");
-#subprocess.run(["cat", "./man.txt"]);
-
 print('\n','List for other role is here:', '\n', "./other.txt");
-#subprocess.run(["cat", "./other.txt"]);
-#subprocess.run(["rm", "./other.txt"]);
