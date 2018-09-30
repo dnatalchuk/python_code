@@ -8,30 +8,22 @@ try:
 except:
     pass
 
-man = open("man.txt", "a");
-other = open("other.txt", "a");
-
 try:
-    data = open('sketch.txt');
-    for each_line in data:
-        try:
-            (role, line_spoken) = each_line.split(':', 1);
-            line_spoken = line_spoken.strip();
-            if role == 'Man':
-                print(line_spoken, file=man);
-            elif role == 'Other Man':
-                print(line_spoken, file=other);
-        except ValueError:
-            pass
+    with open('sketch.txt') as data:
+        for each_line in data:
+            try:
+                (role, line_spoken) = each_line.split(':', 1);
+                line_spoken = line_spoken.strip();
+                if role == 'Man':
+                    with open("man.txt", "a") as man:
+                        print(line_spoken, file=man);
+                elif role == 'Other Man':
+                    with open("other.txt", "a") as other:
+                        print(line_spoken, file=other);
+            except ValueError:
+                pass
 except IOError:
-    print('File is missing')
-
-try:
-    data.close();
-    man.close();
-    other.close();
-except:
-    print("Data is corrupted")
+    print('File is missing' + str(err))
 
 print('List for role man is here:', '\n', "./man.txt");
 print('\n','List for other role is here:', '\n', "./other.txt");
