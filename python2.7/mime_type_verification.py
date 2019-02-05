@@ -4,7 +4,7 @@ import os
 import mimetypes
 
 # 1. Mime-type detection for directory with assets based on file extesnions:
-dirName = "/Users/denysnatalchuk/whc/platform_team/jenkins-jobs/assests_copy/"
+dirName = ""
 
 def getListOfFiles(dirName): 
     listOfFile = os.listdir(dirName)
