@@ -36,9 +36,24 @@ def guess_mime():
 file_mime_type = guess_mime()
 print file_mime_type
 
-# # 2. Create file sets based on mime-type detected:
+# 2. Create file sets based on mime-type detected:
 cli = boto3.client('s3')
 s3 = boto3.resource('s3', region_name = "eu-west-2")
+max_age_files = {}
+for (key, value) in file_mime_type.iteritems():
+    # 3. Assign max-age=60 for healthcheck and stats.json
+    if "healthcheck" in key:
+        max_age_files.update({key:value})
+    elif "stats.json" in key:
+        max_age_files.update({key:value})
+for (k,v) in max_age_files.iteritems():
+    s3.meta.client.upload_file(
+        k, "dn-bucket", k, ExtraArgs={'ContentType': v, 'CacheControl':'max-age=60'})
+for (key, value) in max_age_files.iteritems():
+    file_mime_type.pop(key, value)
 for (key, value) in file_mime_type.iteritems():
     s3.meta.client.upload_file(
-        key, "dn-bucket", key, ExtraArgs={'ContentType': value})
+        key, "dn-bucket", key, ExtraArgs={'ContentType': value, 'CacheControl':'public,max-age=31536000'})
+        
+# 4. aws sync to remove deltas between source and target:
+sync = subprocess.call("aws s3 sync --region ${region} --delete --no-guess-mime-type=True {appDir} s3://dn-bucket",shell=True))
