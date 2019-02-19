@@ -5,7 +5,7 @@
  This module has following purposes:
     to detect correct mime types for files in artifact,
     assign correct mime types for objects during upload to s3 bucket,
-    block unwanted mime types assign respective meta data,
+    block unwanted mime types and assign respective meta data,
     aws s3 sync with --no-guess-mime-type is used
     to remove deltas between source and target.
 
@@ -58,7 +58,7 @@ def get_list_of_files(dir_name):
     return all_files
 
 
-def guess_mime():
+def guess_mime(set_of_files):
     """Assign correct mime types for objects during upload to s3 bucket:
 
     Args:
@@ -68,17 +68,17 @@ def guess_mime():
         dictionary with mapping of filename and its mime type value.
 
     """
-    file_mime_type = {}
-    for file in list_of_files:
-        mime_type = mimetypes.guess_type(file)[0]
-        if mime_type == 'None':
+    files_mime_type = {}
+    for asset in set_of_files:
+        mime_type = mimetypes.guess_type(asset)[0]
+        if mime_type is None:
             mime_type = "text/plain"
         if mime_type == "application/octet-stream":
-            raise Exception("Error: application/octet-stream is not allowed")
-        if "healthcheck" in file:
+            raise Exception("Error: application/octet-stream is not allowed", asset)
+        if asset.split('/')[-1] == "healthcheck":
             mime_type = "application/json"
-        file_mime_type.update({file: mime_type})
-    return file_mime_type
+        files_mime_type.update({asset: mime_type})
+    return files_mime_type
 
 
 def s3_upload(mime_types_list, s3_bucket, region_name, expire_date):
@@ -91,27 +91,28 @@ def s3_upload(mime_types_list, s3_bucket, region_name, expire_date):
         dictionary with mapping of filename and its mime type value.s
 
     '''
-    s3 = boto3.resource('s3', REGION)
+    s3 = boto3.resource('s3', region_name)
     max_age_files = {}
-    for (key, value) in mime_types_list.iteritems():
-        if "healthcheck" in key:
-            max_age_files.update({key: value})
-        elif "stats.json" in key:
-            max_age_files.update({key: value})
-    for (k, v) in max_age_files.iteritems():
+    for (asset, mime) in mime_types_list.iteritems():
+        if asset.split('/')[-1] == "healthcheck":
+            max_age_files.update({asset: mime})
+        elif asset.split('/')[-1] == "stats.json":
+            max_age_files.update({asset: mime})
+    for (max_age_file, max_age_file_mime) in max_age_files.iteritems():
         s3.meta.client.upload_file(
-            k, s3_bucket, k, ExtraArgs={'ContentType': v,
-                                        'CacheControl': 'max-age=60'})
-    for (key, value) in max_age_files.iteritems():
-        file_mime_type.pop(key, value)
-    for (key, value) in mime_types_list.iteritems():
+            max_age_file, s3_bucket, max_age_file, ExtraArgs={
+                'ContentType': max_age_file_mime,
+                'CacheControl': 'max-age=60'})
+    for (max_age_file, max_age_file_mime) in max_age_files.iteritems():
+        mime_types_list.pop(max_age_file, max_age_file_mime)
+    for (asset, mime) in mime_types_list.iteritems():
         s3.meta.client.upload_file(
-            key, s3_bucket, key, ExtraArgs={
-                'ContentType': value, 'CacheControl':
+            asset, s3_bucket, asset, ExtraArgs={
+                'ContentType': mime, 'CacheControl':
                 'public,max-age=31536000', 'Expires': expire_date})
 
 
-list_of_files = get_list_of_files(APP_DIR)
-file_mime_type = guess_mime()
-print(file_mime_type)
-s3_upload(file_mime_type, S3_BUCKET, REGION, EXPIRE_DATE)
+FILE_SETS = get_list_of_files(APP_DIR)
+FILES_MIME_TYPE = guess_mime(FILE_SETS)
+print FILES_MIME_TYPE
+s3_upload(FILES_MIME_TYPE, S3_BUCKET, REGION, EXPIRE_DATE)
