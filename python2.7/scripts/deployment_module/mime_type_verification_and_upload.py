@@ -15,10 +15,10 @@ Example:
 
 Attributes:
 
-    APP_DIR (str): name of directory, set from env varibale;
-    EXPIRE_DATE (str): expiration value for assets, set from env varibale;
-    WORKER (str): Jenkins slave env name, set from env varibale;
-    REGION (str): aws s3 region name, set from env varibale;
+    APP_DIR (str): name of directory, set from env variable;
+    EXPIRE_DATE (str): expiration value for assets, set from env variable;
+    WORKER (str): Jenkins slave env name, set from env variable;
+    REGION (str): aws s3 region name, set from env variable;
     S3_BUCKET (str): name of s3 bucket for objects upload;
 
 Exception:
@@ -27,9 +27,9 @@ Exception:
 """
 import os
 
-from deployment_package.functions import get_list_of_files
-from deployment_package.functions import guess_mime
-from deployment_package.functions import s3_upload
+from module.functions import get_list_of_files
+from module.functions import guess_mime
+from module.functions import s3_upload
 
 APP_DIR = os.environ['appDir']
 EXPIRE_DATE = os.environ['expireDate']

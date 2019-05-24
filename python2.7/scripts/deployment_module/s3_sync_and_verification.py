@@ -19,10 +19,10 @@ Example:
 
 Attributes:
 
-    APP_DIR (str): directory name for static assets, set from env varibale;
-    EXPIRE_DATE (str): expiration value for assets, set from env varibale;
-    WORKER (str): Jenkins slave env name, set from env varibale;
-    REGION (str): aws s3 region name, set from env varibale;
+    APP_DIR (str): directory name for static assets, set from env variable;
+    EXPIRE_DATE (str): expiration value for assets, set from env variable;
+    WORKER (str): Jenkins slave env name, set from env variable;
+    REGION (str): aws s3 region name, set from env variable;
     S3_BUCKET (str): name of s3 bucket for objects upload;
     S3_SYNC_DRY (list): output of aws sync --dryrun command;
 
@@ -33,10 +33,10 @@ Exception:
 import os
 import subprocess
 
-from deployment_package.functions import guess_mime
-from deployment_package.functions import s3_upload
-from deployment_package.functions import sync_upload_list
-from deployment_package.functions import sync_upload_and_delete
+from module.functions import guess_mime
+from module.functions import s3_upload
+from module.functions import sync_upload_list
+from module.functions import sync_upload_and_delete
 
 APP_DIR = os.environ['appDir']
 EXPIRE_DATE = os.environ['expireDate']
