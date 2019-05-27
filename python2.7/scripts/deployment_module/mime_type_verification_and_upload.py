@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 """
-
- This script has the following purposes:
+This script has the following purposes.
     to detect correct mime types for files in artifact,
     assign correct mime types for objects during upload to s3 bucket,
     block unwanted mime types and assign respective meta data,
